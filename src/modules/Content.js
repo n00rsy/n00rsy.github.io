@@ -7,8 +7,8 @@ function Content() {
   if(isMobile){
     return(
       <div className="content-container-mobile">
-      <div className="content">
-        <h1>noor_syed</h1>
+      <div className="content-mobile">
+        <h1>noor syed</h1>
         <p>Junior at Rutgers University studying <span style={{ fontWeight: '700' }}>Computer Science</span></p>
         <p>Extremely interested in scalable system design, distributed systems, and high performance computing. Also interested in fullstack engineering, graphics programming, and GPU compute.</p>
 
@@ -61,6 +61,8 @@ function Content() {
           <li><a href="https://www.amazon.com/Noor-Syed-Insult-Generator/dp/B06W5GWD3R">Alexa Insult Generator</a></li>
         </ul>
         <p><a href="https://www.youtube.com/watch?v=fuvkdIqdboc">Watch</a> me model an Audi r8 in Blender</p>
+        <br></br>
+        <br></br>
         <br></br>
       </div>
     </div>

@@ -27,7 +27,14 @@
   overflow-y:scroll;
   overflow-x: hidden;
 }
+.content-mobile{
+  height: 100%;
+  padding-left: 3vw;
 
+  padding-right: 10vw;
+  overflow-y:scroll;
+  overflow-x: hidden;
+}
 li{
   margin-bottom: 1rem;
 }

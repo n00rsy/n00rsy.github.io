@@ -45,10 +45,10 @@ var shooting_star = function () {
   this.radius = random(100,200)
 
   this.x = width+100
-  this.y = random(0, height / 3)
+  this.y = random(0, height / 4)
 
   this.alpha = random(2, 10) / 10;
-  this.speed = 5
+  this.speed = random(20,30)/10
   shooting_stars.push(this)
 }
 
@@ -60,8 +60,8 @@ shooting_star.prototype.draw = function () {
       }
     }
   }
-  this.y+=7*speed
-  this.x-=15*speed
+  this.y+=7*this.speed
+  this.x-=15*this.speed
 
   ctx.drawImage(star_canvas, this.x, this.y, this.radius, this.radius);
 }
@@ -148,7 +148,7 @@ function init_mountains() {
 }
 
 function init_shooting_stars() {
-  var count = random(3,4)
+  var count = random(2,3)
   shooting_stars.push(new shooting_star());
   for (var i = 0; i < count; i++) {
     setTimeout(function(){ shooting_stars.push(new shooting_star()); }, Math.random()*4000);
