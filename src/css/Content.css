@@ -1,0 +1,54 @@
+.content-container{
+  background-color: white;
+  color: black;
+  position: absolute;
+  width: 700px;
+  height: 100vh;
+  left:15vw;
+  z-index: 1;
+  top:0;
+}
+.content-container-mobile{
+  background-color: white;
+  color: black;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  left:5vw;
+  z-index: 1;
+  top:0;
+}
+.content{
+  height: 80%;
+  padding-left: 3vw;
+
+  padding-right: 3vw;
+
+  overflow-y:scroll;
+  overflow-x: hidden;
+}
+
+li{
+  margin-bottom: 1rem;
+}
+h1{
+  padding-left: 3vw;
+  font-size: 6rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  
+}
+h2{
+  font-size: 2rem;
+  color: #bd9999;
+  margin-bottom: 0;
+
+}
+h4{
+  margin:0;
+  font-weight: 300;
+  font-style: italic;
+}
+p{
+  font-size: large;
+}
