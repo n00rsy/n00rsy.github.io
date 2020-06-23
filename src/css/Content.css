@@ -2,11 +2,18 @@
   background-color: white;
   color: black;
   position: absolute;
-  width: 700px;
+  width: 40rem;
+ 
   height: 100vh;
-  left:15vw;
+  left:8vw;
   z-index: 1;
   top:0;
+}
+.content{
+  height: 80%;
+  padding-left: 3vw;
+  overflow-y:scroll;
+  overflow-x: hidden;
 }
 .content-container-mobile{
   background-color: white;
@@ -17,15 +24,6 @@
   left:5vw;
   z-index: 1;
   top:0;
-}
-.content{
-  height: 80%;
-  padding-left: 3vw;
-
-  padding-right: 3vw;
-
-  overflow-y:scroll;
-  overflow-x: hidden;
 }
 .content-mobile{
   height: 100%;
@@ -57,5 +55,5 @@ h4{
   font-style: italic;
 }
 p{
-  font-size: large;
+  font-size: medium;
 }

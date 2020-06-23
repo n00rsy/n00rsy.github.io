@@ -4,6 +4,8 @@ let canvas,
   ctx,
   star_canvas,
   star_ctx,
+  shooting_star_canvas,
+  shooting_star_ctx,
   mountain_canvas,
   mountain_ctx,
   mountain_pos,
@@ -12,17 +14,17 @@ let canvas,
   noise,
   noise_seed
   
-const max_stars = 2000
-let speed = 1.5
+const max_stars = 1500
 let stars = []
 let shooting_stars = []
-
+let vert_step = 6
+let hor_step = 16
 function random(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 var star = function () {
-  this.radius = random(15, 25);
+  this.radius = random(1,2);
   this.x = random(0, width)
   this.y = random(0, height)
   this.alpha = random(2, 10) / 10;
@@ -45,10 +47,10 @@ var shooting_star = function () {
   this.radius = random(100,200)
 
   this.x = width+100
-  this.y = random(0, height / 4)
+  this.y = random(0, height / 5)-100
 
   this.alpha = random(2, 10) / 10;
-  this.speed = random(20,30)/10
+  this.speed = random(10,25)/10
   shooting_stars.push(this)
 }
 
@@ -60,10 +62,10 @@ shooting_star.prototype.draw = function () {
       }
     }
   }
-  this.y+=7*this.speed
-  this.x-=15*this.speed
+  this.y+=vert_step*this.speed
+  this.x-=hor_step*this.speed
 
-  ctx.drawImage(star_canvas, this.x, this.y, this.radius, this.radius);
+  ctx.drawImage(shooting_star_canvas,this.x, this.y);
 }
 
 function animate() {
@@ -71,11 +73,11 @@ function animate() {
   ctx.globalCompositeOperation = 'source-over';
   ctx.fillStyle = 'transparent';
 
-  for (var i = 0;i<stars.length; i++) {
+  for (let i = 0;i<stars.length; i++) {
     stars[i].draw();
   }
   ctx.globalAlpha = 1
-  for (var i = 0; i<shooting_stars.length; i++) {
+  for (let i = 0; i<shooting_stars.length; i++) {
     shooting_stars[i].draw();
   }
 
@@ -100,9 +102,7 @@ function init_star_shape() {
     w2 / 2
   );
   gradientCache.addColorStop(0.025, 'rgba(255, 232, 222, 1)');
-  gradientCache.addColorStop(0.1, 'rgba(255, 232, 222, 0.2)');
-  gradientCache.addColorStop(0.25, 'rgba(255, 232, 222, 0.07)');
-  gradientCache.addColorStop(1, 'transparent');
+  gradientCache.addColorStop(0.1, 'rgba(255, 232, 222, 1)');
   star_ctx.fillStyle = gradientCache;
   star_ctx.beginPath();
   star_ctx.arc(w2 / 2, h2 / 2, w2 / 2, 0, Math.PI * 2);
@@ -110,10 +110,10 @@ function init_star_shape() {
 }
 
 function init_stars() {
+  init_star_shape()
   for (var i = 0; i < max_stars; i++) {
     new star()
   }
-  init_star_shape()
 }
 function init_mountains() {
   mountain_pos = height - height / 4
@@ -147,15 +147,33 @@ function init_mountains() {
   mountain_ctx.fill();
 }
 
+function init_shooting_star_shape(){
+  shooting_star_canvas = document.createElement('canvas');
+  var w2 = shooting_star_canvas.width = 500;
+  var h2 = shooting_star_canvas.height = 100;
+  shooting_star_ctx = shooting_star_canvas.getContext("2d");
+  shooting_star_ctx.fillStyle = 'rgba(189, 153, 153,1)'
+
+  shooting_star_ctx.rotate(Math.atan(hor_step/vert_step));
+  shooting_star_ctx.fillRect(100, -250, random(10,20)/10, 400);
+}
+
 function init_shooting_stars() {
-  var count = random(2,3)
+  init_shooting_star_shape()
   shooting_stars.push(new shooting_star());
+  shooting_star_cluster()
+  setTimeout(function(){shooting_star_cluster()}, 5500)
+}
+
+function shooting_star_cluster(){
+  var count = random(3,4)
   for (var i = 0; i < count; i++) {
-    setTimeout(function(){ shooting_stars.push(new shooting_star()); }, Math.random()*4000);
+    setTimeout(function(){ shooting_stars.push(new shooting_star()); }, random(300,5000));
   }
 }
 
 export function init(canvasID) {
+  console.log("sup peeps")
   canvas = document.querySelector("#" + canvasID);
   width = canvas.parentNode.offsetWidth;
   height = canvas.parentNode.offsetHeight;

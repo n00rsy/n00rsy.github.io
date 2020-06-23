@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap');
+
+html{
+  font-size: medium;
+}
+
 body {
   margin: 0;
   position: relative;
@@ -19,6 +24,7 @@ a {
 }
 
 ::-webkit-scrollbar {
+  
   width: 10px;
 }
 
