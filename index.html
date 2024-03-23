@@ -53,8 +53,7 @@
 
     body {
       font-family: "Roboto", sans-serif;
-      margin-left: 10vw;
-      margin-right: 4vw;
+      margin-left: 20vw;
       max-width: 40em;
       padding-bottom: 10em;
     }
@@ -73,7 +72,9 @@
 
     function setup() {
       noStroke();
-      let canvas = createCanvas(1200, 400);
+      let canvasDiv = document.getElementById('p5js');
+      let width = canvasDiv.offsetWidth;
+      let canvas = createCanvas(width, 400);
       canvas.parent("p5js");
 
       // create stars
