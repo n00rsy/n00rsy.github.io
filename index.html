@@ -2,54 +2,168 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="description" content="Noor Syed personal website" />
-    <title>Noor Syed</title>
-    <style>
-a {
-  color: green;
-}
+  <meta charset="utf-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="description" content="Noor Syed personal website" />
+  <title>Noor Syed</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Roboto&display=swap');
 
-body {
-    font-family:sans-serif;
-    margin-left: 10vw; 
-    margin-right: 4vw;
-    max-width: 40em;
-    padding-bottom: 10em;
-}
-    </style>
+    a {
+      color: #3d3959;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "DM Serif Display", serif;
+      font-weight: 400;
+    }
+
+    h1 {
+      padding-top: 0.5em;
+      font-size: 3rem;
+      margin-bottom: 0;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.75rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+    }
+
+    h1:after {
+      content: ' ';
+      display: block;
+      border: 2px solid black;
+    }
+
+    h3:after {
+      content: ' ';
+      display: block;
+      border: 2px solid black;
+    }
+
+    body {
+      font-family: "Roboto", sans-serif;
+      margin-left: 10vw;
+      margin-right: 4vw;
+      max-width: 40em;
+      padding-bottom: 10em;
+    }
+  </style>
+
 </head>
 
 <body>
 
-<h1>Noor Syed</h1>
+  <h1>Noor Syed</h1>
 
-<h2>Fullstack Software Engineer</h2>
+  <h2>Fullstack Software Engineer</h2>
+  <div id="p5js"></div>
+  <script>
+    let stars = [];
 
-<img src="https://i.ibb.co/SX9YBGz/IMG-0126.jpg" />
+    function setup() {
+      noStroke();
+      let canvas = createCanvas(1200, 400);
+      canvas.parent("p5js");
 
-<blockquote>The pursuit of knowledge is not just a hobby but an integral part of personal and professional growth.<br><em>— ChatGPT 3.5, 2023</em></blockquote>
+      // create stars
+      for (let i = 0; i < 500; i++) {
+        stars.push({
+          x: random(width),
+          y: random(height),
+          brightness: random(0, 100)
+        });
+      }
+    }
 
-<p>I have a focus on backend design, distributed systems, and high performance computing. I have an eye for design and like to move fast. Currently I'm interested in AI technology and applying LLMs to real world problems. When I'm not writing code, I'm lifting, reading, hiking, and eating fat sandwiches. So, with a dedication to technology a love of the great outdoors, my journey continues to evolve, leaving a lasting impact on both the digital landscape and the world outside.</p>
-<P>Interested in reaching out? See my contact info below.</P>
-<h3>Experience</h3>
-<ul>
-    <li>SWE @ <a href ="https://www.bloomberg.com/company/">Bloomberg L.P.</a> 💲</li>
-    <li>SWE intern @ <a href ="https://www.tesla.com/about">Tesla, Inc</a> 🚗</li>
-    <li>SWE Intern - fullstack @ <a href ="https://corp.roblox.com/">Roblox Corporation</a> 🥽</li>
-    <li>Backend engineer @ <a href ="https://knowt.io/">Knowt</a> ✏️</li>
-    <li>Trading systems software engineer intern @ <a href ="https://www.bgcpartners.com/">BGC Partners</a> 📈</li>
-    <li>Software developer + technical support lead @ <a href ="http://sabiidigital.com/">Sabii Digital</a> 👨‍💻</li>
-    <li>Research intern @ <a href ="https://informatics.njit.edu/research-labs">NJIT Informatics Lab</a> 🔬</li>
-</ul>
+    function draw() {
+      background(220);
+      ellipseMode(CENTER);
+      let xc = constrain(mouseX, 0, 500);
 
-<h3>Technical Skills</h3>
+      // sky
+      fill(map(xc, 0, 500, 75, 29), map(xc, 0, 500, 61, 19), map(xc, 0, 500, 96, 106));
+      rect(0, 0, width, 100);
 
-<p><em>Everthing in order of what I like most</em></p>
+      fill(map(xc, 0, 500, 253, 27), map(xc, 0, 500, 94, 81), map(xc, 0, 500, 83, 166));
+      rect(0, 100, width, 100);
 
-<h4>Languages</h4>
-<ul>
+      fill(map(xc, 0, 500, 252, 61), map(xc, 0, 500, 156, 135), map(xc, 0, 500, 84, 211));
+      rect(0, 200, width, 100);
+
+      fill(255, 227, 115);
+      ellipse(250, 100, 100);
+
+      // stars
+      stars.forEach((star) => {
+        ellipse(star.x, star.y, 2);
+        fill(255, 255, 255, map(xc, 0, 500, 0, 255));
+      })
+
+      fill(map(xc, 0, 500, 255, 135), map(xc, 0, 500, 227, 199), map(xc, 0, 500, 115, 222));
+      rect(0, 300, width, 100);
+
+      // sun/ moon
+      fill(map(xc, 0, 500, 253, 27), map(xc, 0, 500, 94, 81), map(xc, 0, 500, 83, 166));
+      arc(map(xc, 0, 500, 370, 260), 100, 100, 100, 0, PI);
+      translate(250, 100);
+      rotate(PI);
+      fill(map(xc, 0, 500, 75, 29), map(xc, 0, 500, 61, 19), map(xc, 0, 500, 96, 106));
+      arc(map(xc, 0, 500, -120, -10), 0, 100, 100, 0, PI);
+      rotate(-PI);
+      translate(-250, -100);
+
+      // mountains
+      fill(map(xc, 0, 500, 8, 13), map(xc, 0, 500, 24, 5), map(xc, 0, 500, 58, 72));
+      triangle(-50, 400, 100, 250, 250, 400);
+      triangle(250, 400, 380, 270, 550, 400);
+      fill(map(xc, 0, 500, 75, 29), map(xc, 0, 500, 61, 19), map(xc, 0, 500, 96, 106));
+      triangle(250, 400, 380, 270, 350, 400);
+      fill(map(xc, 0, 500, 8, 13), map(xc, 0, 500, 24, 5), map(xc, 0, 500, 58, 72));
+      triangle(100, 400, 250, 200, 400, 400);
+      fill(map(xc, 0, 500, 75, 29), map(xc, 0, 500, 61, 19), map(xc, 0, 500, 96, 106));
+      triangle(100, 400, 250, 200, 200, 400);
+      triangle(-50, 400, 100, 250, 0, 400);
+    }
+  </script>
+
+  <blockquote>The life of this world is made up of three days: yesterday has gone with all that was done; tomorrow, you
+    may never reach; but today is for you so do what you should do today.<br><em>— Al-Hasan Al-Basrî</em></blockquote>
+
+  <p>Hey, nice to meet you! I'm Noor. I have a focus on backend design, distributed systems, and high performance
+    computing. I have an eye for design and
+    like to move fast. Currently I'm interested in AI technology and applying LLMs to real world problems. When I'm not
+    writing code, I'm reading, lifting, hiking, and eating fat sandwiches. So with a dedication to technology a love of
+    the great outdoors, my journey continues to evolve, leaving a lasting impact on both the digital landscape and the
+    world outside.</p>
+  <P>Interested in reaching out? See my contact info below.</P>
+  <h3>Experience</h3>
+  <ul>
+    <li>SWE @ <a href="https://www.bloomberg.com/company/">Bloomberg L.P.</a> 💲</li>
+    <li>SWE intern @ <a href="https://www.tesla.com/about">Tesla, Inc</a> 🚗</li>
+    <li>SWE Intern - fullstack @ <a href="https://corp.roblox.com/">Roblox Corporation</a> 🥽</li>
+    <li>Backend engineer @ <a href="https://knowt.io/">Knowt</a> ✏️</li>
+    <li>Trading systems software engineer intern @ <a href="https://www.bgcpartners.com/">BGC Partners</a> 📈</li>
+    <li>Software developer + technical support lead @ <a href="http://sabiidigital.com/">Sabii Digital</a> 👨‍💻</li>
+    <li>Research intern @ <a href="https://informatics.njit.edu/research-labs">NJIT Informatics Lab</a> 🔬</li>
+  </ul>
+
+  <h3>Technical Skills</h3>
+
+  <p><em>Everthing in order of what I like most</em></p>
+
+  <h4>Languages</h4>
+  <ul>
     <li>Go</li>
     <li>Python 3</li>
     <li>TypeScript/ JavaScript</li>
@@ -57,10 +171,10 @@ body {
     <li>C/C++</li>
     <li>C#</li>
     <li>Dart</li>
-</ul>
+  </ul>
 
-<h4>Frameworks/ Tools</h4>
-<ul>
+  <h4>Frameworks/ Tools</h4>
+  <ul>
     <li>node.js</li>
     <li>AWS Serverless Architecture</li>
     <li>Spring Framework</li>
@@ -69,22 +183,24 @@ body {
     <li>CUDA Toolkit</li>
     <li>.NET Framework</li>
     <li>Flutter</li>
-</ul>
+  </ul>
 
-<h3>Education</h3>
-<ul>
+  <h3>Education</h3>
+  <ul>
 
-</ul>
-<p><strong>Rutgers University New Brunswick</strong><br>BS in Computer Science and Mathematics<br>September 2018–May 2022</p>
+  </ul>
+  <p><strong>Rutgers University New Brunswick</strong><br>BS in Computer Science and Mathematics<br>September 2018–May
+    2022</p>
 
 
-<h3>Contact</h3>
-<p><strong>email: </strong><a href="mailto:noorsyed1a@email.com">noorsyed1a@gmail.com</a></p>
-<p>
+  <h3>Contact</h3>
+  <p><strong>email: </strong><a href="mailto:noorsyed1a@email.com">noorsyed1a@gmail.com</a></p>
+  <p>
     <a href="https://www.linkedin.com/in/n00rsy/">LinkedIn</a> &emsp;
     <a href="https://github.com/n00rsy">GitHub</a> &emsp;
     <a href="https://github.com/n00rsy/resume/blob/master/NoorSyedResume.pdf">Resume</a>
-</p>
+  </p>
 
 </body>
+
 </html>
